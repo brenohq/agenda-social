@@ -9,6 +9,11 @@ ServiceConfiguration.configurations.insert({
     requestPermissions: ['user_friends', 'public_profile', 'email']
 });
 
+// Meteor.loginWithFacebook({
+// 	requestPermissions: ["manage_pages","publish_stream"],
+// 	requestOfflineToken: true
+// });
+
 Accounts.onCreateUser(function(options, user) {
 	user.profile = options.profile;
 	let token = user.services.facebook.accessToken;
