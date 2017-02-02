@@ -1,0 +1,15 @@
+.hero--bg {
+	position: relative;	
+}
+
+.hero--bg:before {
+	content: '';
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	/*background-image: url(images/bg-header.jpg);*/
+	background-attachment: fixed;
+	opacity: .65;
+}

@@ -13,5 +13,10 @@
 </head>
 
 <body>
-  {{> navbar}} {{> Router}} {{> footer}}
+  {{> navbar}}
+  {{> Router}}
+  {{> footer}}
+  {{#if isLoading}}
+    <div class="loading"></div>
+  {{/if}}
 </body>
