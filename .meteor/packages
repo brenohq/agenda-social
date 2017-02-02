@@ -22,3 +22,9 @@ autopublish@1.0.7             # Publish all data to the clients (for prototyping
 insecure@1.0.7                # Allow all DB writes from clients (for prototyping)
 iron:router
 aldeed:autoform
+session
+http
+accounts-facebook
+useraccounts:unstyled
+service-configuration
+accounts-ui
