@@ -1,0 +1,23 @@
+{
+  "name": "colabore",
+  "version": "0.0.1",
+  "description": "Simple client application to populate Colabore-Bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brenohq/colabore.git"
+  },
+  "keywords": [
+    "bot",
+    "colabore"
+  ],
+  "author": "Breno Henrique",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/brenohq/colabore/issues"
+  },
+  "homepage": "https://github.com/brenohq/colabore#readme"
+}
