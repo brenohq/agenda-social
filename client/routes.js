@@ -4,6 +4,12 @@ Router.route('/', {
 	}
 });
 
+Router.route('/dashboard', {
+	action() {
+		this.render('dashboard');		
+	}
+});
+
 Router.route('/cadastre-uma-ONG', {
 	action() {
 		this.render('cadastro-ong');		

@@ -1,7 +1,7 @@
 Template.login.events({
 	'click #facebook-login': () => {
 		Meteor.loginWithFacebook({
-			requestPermissions: ["manage_pages"],
+			requestPermissions: ['manage_pages'],
 			requestOfflineToken: true
 		});
 	},
