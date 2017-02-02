@@ -33,16 +33,3 @@
 // 	}
 // });
 
-// function getPageInfo(token, id, cb = () => { }) {
-// 	let url = `https://graph.facebook.com/v2.8/${ id }?access_token=${ token }`;
-// 	url += '?&ields=cover,description,category,picture';
-
-// 	HTTP.get(url, (err, res) => {
-// 		if (!err) {
-// 			Session.set('loading', true);
-// 			cb(res);
-// 		} else {
-// 			Session.set('loading', false);
-// 		}
-// 	});
-// }

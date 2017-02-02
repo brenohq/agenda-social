@@ -9,10 +9,31 @@ ServiceConfiguration.configurations.insert({
     requestPermissions: ['user_friends', 'public_profile', 'email']
 });
 
-// Accounts.onCreateUser(function(options, user) {
-	
-// 	console.log('user', user)
-// 	console.log('options', options)
+Accounts.onCreateUser(function(options, user) {
+	user.profile = options.profile;
+	let token = user.services.facebook.accessToken;
+	let userId = user.services.facebook.id;
+	let url = `https://graph.facebook.com/v2.8/${ userId }/accounts?access_token=${ token }`;
+	let pages = [];
+	let loaded = 0;
+	let result = Meteor.http.get(url);
+	let content = JSON.parse(result.content);
+	let userPages = content.data;
 
-// 	return false;
-// })
+	userPages.forEach((page, i) => {
+		let pageUrl = `https://graph.facebook.com/v2.8/${ page.id }?access_token=${ page.access_token }`;
+		pageUrl += '?&fields=cover,description,category,picture';
+		let pageResult = Meteor.http.get(pageUrl);
+		let parsedPage = JSON.parse(pageResult.content);
+		parsedPage.coverImage = parsedPage.cover.source;
+		delete parsedPage.cover;
+		parsedPage.image = parsedPage.picture.data.url;
+		delete parsedPage.picture;
+
+		pages.push(parsedPage);
+	});
+
+	user.profile.pages = pages;
+	
+	return user;
+});
