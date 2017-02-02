@@ -1,7 +1,6 @@
 <template name="login">
     {{#if currentUser}}
-        {{currentUser.services.facebook.name}} -
-        {{currentUser.services.facebook.gender}}
+        {{currentUser.services.facebook.name}}
         <button id="logout">Logout</button>
     {{else}}
         <button id="facebook-login" class="btn btn-default">Cadastre a sua ONG!</button>
