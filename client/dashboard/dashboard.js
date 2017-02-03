@@ -42,7 +42,7 @@ Template.pageEvents.helpers({
 		if (Session.get('progress') === 0 && ! started) {
 			started = true;
 
-			Meteor.call('getEventsFromApi', Meteor.user(), (data) => {
+			Meteor.call('getEventsFromApi', Meteor.user(), (err, data) => {
 				Session.set('progress', 100);
 			});			
 		}

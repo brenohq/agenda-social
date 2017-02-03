@@ -5,27 +5,27 @@
 Meteor.methods({
    'getEventsFromApi': () => {
       let user = Meteor.user();
-      let accessToken =user.services.facebook.accessToken;
+      let accessToken = user.services.facebook.accessToken;
       let page_id =user.profile.selectedPage.id;
-      let userId = user.userId;
+      let userId = Meteor.userId();
 
       let pageUrl = 'https://graph.facebook.com/v2.8/'+ page_id +'?access_token='+ accessToken;
       pageUrl += '?&fields=events';
       let eventsResult = Meteor.http.get(pageUrl);
       let futureEvents = [];
 
-      console.log(eventsResult.data);
 
-      if (typeof eventsResult.data.events === 'undefined')
-         return
+      // if (typeof eventsResult.data.events === 'undefined')
+      //    return;
 
-      if (eventsResult.data.events.data){
+      if (eventsResult.data.events.data) {
          futureEvents = getFutureEvents(eventsResult.data.events.data);
       }
 
-      futureEvents.forEach(function(event){
+      futureEvents.forEach((event) => {
          pageUrl = 'https://graph.facebook.com/v2.8/'+ event.id +'?access_token='+ accessToken;
          pageUrl += '?&fields=cover';
+
          let eventsResult = Meteor.http.get(pageUrl);
 
          if (eventsResult.data.cover.source){
