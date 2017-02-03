@@ -1,12 +1,47 @@
 <template name="dashboard">
-	<section class="section">
+	<section class="section padding-top">
     <div class="container">
-      <div class="heading">
-        <h1 class="title">Section</h1>
-        <h2 class="subtitle">
-          A simple container to divide your page into <strong>sections</strong>, like the one you're currently reading
-        </h2>
+      <div class="columns">
+        <div class="collumn">
+          <div class="heading">
+            <h1 class="title">Section</h1>
+            <h2 class="subtitle">
+              A simple container to divide your page into <strong>sections</strong>, like the one you're currently reading
+            </h2>
+          </div>          
+        </div>
       </div>
+      {{#if userPages}}
+        <ul class="columns">
+          {{#each userPages}}
+            <li class="column is-one-third">
+              <div class="card ">
+                <div class="card-image">
+                  <figure class="image is-16by9">
+                    <img src="{{this.coverImage}}" alt="Image">
+                  </figure>
+                </div>
+                <div class="card-content">
+                  <div class="media">
+                    <div class="media-left">
+                      <figure class="image" style="height: 40px; width: 40px;">
+                        <img src="{{this.image}}" alt="Image">
+                      </figure>
+                    </div>
+                    <div class="media-content">
+                      <p class="title is-4">{{this.name}}</p>
+                    </div>
+                  </div>
+
+                  <div class="content">
+                    {{this.description}}
+                  </div>
+                </div>
+              </div>
+            </li>
+          {{/each}}
+        </ul>
+      {{/if}}
     </div>
   </section>
 </template>

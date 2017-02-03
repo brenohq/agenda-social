@@ -1,40 +1,42 @@
 <template name="navbar">
   
-  <nav class="nav">
-    <div class="nav-left">
-      <a class="nav-item">
-        <!--<img src="http://bulma.io/images/bulma-logo.png" alt="Bulma logo">-->
-      </a>
+  <nav class="nav nav--fixed has-shadow">
+    <div class="container">
+      <div class="nav-left">
+        <a class="nav-item">
+          <!--<img src="http://bulma.io/images/bulma-logo.png" alt="Bulma logo">-->
+        </a>
+      </div>
+
+      <div class="nav-center">
+        <!-- Conteúdo centralizado da navbar  -->
+      </div>
+
+      
+
+      <!-- This "nav-menu" is hidden on mobile -->
+      <!-- Add the modifier "is-active" to display it on mobile -->
+      <div class="nav-right nav-menu" id="nav-menu">
+        <a class="nav-item is-tab" href="">
+          Cadastre sua ONG
+        </a>
+        <a class="nav-item is-tab" href="">
+          Cadastre seu Evento
+        </a>
+        <a class="nav-item is-tab" href="">
+          Sobre
+        </a>
+      </div>
+
+
+      <!-- This "nav-toggle" hamburger menu is only visible on mobile -->
+      <!-- You need JavaScript to toggle the "is-active" class on "nav-menu" -->
+      <span class="nav-toggle" id="nav-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
     </div>
-
-    <div class="nav-center">
-      <!-- Conteúdo centralizado da navbar  -->
-    </div>
-
-    
-
-    <!-- This "nav-menu" is hidden on mobile -->
-    <!-- Add the modifier "is-active" to display it on mobile -->
-    <div class="nav-right nav-menu" id="nav-menu">
-      <a class="nav-item" href="">
-        Cadastre sua ONG
-      </a>
-      <a class="nav-item" href="">
-        Cadastre seu Evento
-      </a>
-      <a class="nav-item" href="">
-        Sobre
-      </a>
-    </div>
-
-
-    <!-- This "nav-toggle" hamburger menu is only visible on mobile -->
-    <!-- You need JavaScript to toggle the "is-active" class on "nav-menu" -->
-    <span class="nav-toggle" id="nav-toggle">
-      <span></span>
-      <span></span>
-      <span></span>
-    </span>
-  </nav>
+  </nav>      
 
 </template>

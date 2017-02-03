@@ -28,3 +28,7 @@
     top: 50%;
     position: absolute !important;
 }
+
+.section.padding-top {
+    padding-top: 80px;
+}
