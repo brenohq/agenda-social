@@ -27,13 +27,13 @@ Accounts.onCreateUser(function(options, user) {
 
 	userPages.forEach((page, i) => {
 		let pageUrl = `https://graph.facebook.com/v2.8/${ page.id }?access_token=${ page.access_token }`;
-		pageUrl += '?&fields=cover,description,category,picture';
+		pageUrl += '?&fields=cover,description,category,picture,name';
 		let pageResult = Meteor.http.get(pageUrl);
 		let parsedPage = JSON.parse(pageResult.content);
-		parsedPage.coverImage = parsedPage.cover.source;
-		delete parsedPage.cover;
-		parsedPage.image = parsedPage.picture.data.url;
-		delete parsedPage.picture;
+		//parsedPage.coverImage = parsedPage.cover.source;
+		//delete parsedPage.cover;
+		//parsedPage.image = parsedPage.picture.data.url;
+		//delete parsedPage.picture;
 
 		pages.push(parsedPage);
 	});

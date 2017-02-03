@@ -15,3 +15,9 @@ Router.route('/cadastre-uma-ONG', {
 		this.render('cadastro-ong');		
 	}
 });
+
+Router.route('/ong',{
+	action() {
+		this.render('ong');
+	}
+});
