@@ -1,17 +1,7 @@
 <template name="dashboard">
-  <section class="hero padding-top">
-    <div class="hero-body">
-      <div class="container">
-        <h1 class="title">
-          Hero title
-        </h1>
-        <h2 class="subtitle">
-          Hero subtitle
-        </h2>
-      </div>
-    </div>
-  </section>
-	<section class="section padding-top">
+
+<section class="hero is-fullheight">
+  <div class="hero-body">
     <div class="container">
       {{#if userPages}}
         <ul class="columns">
@@ -19,7 +9,7 @@
             <li class="column is-one-third">
               <div class="card">
                 <div class="card-image">
-                  <figure class="image is-16by9">
+                  <figure class="image">
                     <img src="{{this.coverImage}}" alt="Image">
                   </figure>
                 </div>
@@ -45,5 +35,7 @@
         </ul>
       {{/if}}
     </div>
-  </section>
+  </div>
+</section>
+
 </template>
