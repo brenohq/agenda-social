@@ -2,14 +2,20 @@
   <section class="hero padding-top">
     <div class="hero-body">
       <div class="container">
-        <h1 class="title">
-          Opa! Você está quase la,
-        </h1>
-        <h2 class="subtitle">
-          para continuar selecione a página da sua ONG:
-        </h2>
+        {{#unless selectedPage}}
+          <h1 class="title">
+            Opa! Você está quase la,
+          </h1>
+          <h2 class="subtitle">
+            para continuar selecione a página da sua ONG:
+          </h2>
+        {{/unless}}
         {{#if userPages}}
-          {{> pageList pages=userPages}}
+          {{#if selectedPage}}
+            {{> pageEvents page=selectedPage}}
+          {{else}}
+            {{> pageList pages=userPages}}
+          {{/if}}
         {{/if}}
       </div>
     </div>

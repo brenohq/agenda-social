@@ -1,0 +1,6 @@
+<template name="pageEvents">
+	{{#if getEvents}}
+	{{else}}
+		<progress class="progress is-primary" value="{{getProgress}}" max="100">{{getProgress}}%</progress>
+	{{/if}}
+</template>
