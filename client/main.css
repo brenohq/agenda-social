@@ -43,3 +43,14 @@
     bottom: 0;
     margin: auto;
 }
+
+.nav .nav-image {
+    margin-right: 8px;  
+}
+
+.nav .nav-image img {
+    max-height: 100%;
+    height: 100%;
+    /*margin: 10% 0;*/
+    width: auto;
+}

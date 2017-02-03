@@ -35,3 +35,4 @@ Router.route('/about',{
 	this.render('about');
 }
 });
+

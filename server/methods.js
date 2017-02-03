@@ -3,6 +3,13 @@
  */
 
 Meteor.methods({
+   'removeSelectedFromUser': () => {
+      let userId = Meteor.userId();
+
+      Meteor.users.update(userId, { $set: { 'profile.selectedPage': null } });
+
+   },
+
    'getEventsFromApi': () => {
       let user = Meteor.user();
       let accessToken = user.services.facebook.accessToken;
@@ -43,6 +50,35 @@ Meteor.methods({
       });
 
       return true;
+   },
+
+   'closestEvents': (location) => {
+      const request = Meteor.http.get;
+
+      let begin = {
+         lat: -23.5246611,
+         lon: -46.7313022
+      }
+
+      let end = {
+         lat: -20.3886024,
+         lon: -44.4938625
+      }
+
+      let origin = begin.lat + ',' + begin.lon;
+      let destination = end.lat + ',' + end.lon;
+
+      let url = "https://maps.googleapis.com/maps/api/distancematrix/json?units=metric&origins=" + origin + "&destinations=" + destination + "&key=AIzaSyAMHSYI2hMp1JUGPES1dvEn9-cW5UZEcNE";
+
+      request(url, function(error, response, body) {
+         if (!error && response.statusCode == 200) {
+            console.log(body); // body contém distância, duração do trajeto e outras informações úteis
+         } else {
+            console.log('Erro: ', error);
+            console.log('Status Code: ', response.statusCode);
+         }
+      })
+
    }
 });
 
@@ -57,4 +93,13 @@ const getFutureEvents = (events) => {
    });
 
    return futureEvents;
+}
+
+function calculateDistanceSimple(start, end) {
+
+    var sin = Math.sin(toRad(end.lat)) * Math.sin(toRad(start.lat));
+    var cos = Math.cos(toRad(end.lat)) * Math.cos(toRad(start.lat))*Math.cos(toRad(start.lng) - toRad(end.lng));
+    var distance =  Math.acos(Math.min(1.0, sin+cos)) * RADIUS;
+
+    return Math.round(distance);
 }

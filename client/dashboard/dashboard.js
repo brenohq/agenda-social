@@ -44,6 +44,7 @@ Template.pageEvents.helpers({
     }, 100);
 
     if (Session.get('progress') === 0 && ! started) {
+      console.log('called')
       started = true;
 
       Meteor.call('getEventsFromApi', (err, data) => {
@@ -52,12 +53,10 @@ Template.pageEvents.helpers({
         console.log(data)
         if (!data) {
           Session.set('error', 'Desculpe, não foi possivel encontrar enventos próximos :(');
+          Session.set('progress', 0 );
+          started = false;
 
-          setTimeout(() => {
-            Meteor.logout(() => {
-              Router.go('/');            
-            });
-          }, 3500);
+          Meteor.call('removeSelectedFromUser');
         }
 			});			
 		}
