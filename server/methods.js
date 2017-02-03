@@ -31,11 +31,16 @@ Meteor.methods({
          if (eventsResult.data.cover.source){
             event.coverImage = eventsResult.data.cover.source;
          }
+
+         if (!Events.find({ id: event.id }).count()) {
+            console.log('oe')
+            event.owner = userId;
+            event.selected = false;
+            Events.insert(event);
+         }
       });
 
-      Meteor.users.update(userId, { $set: { 'profile.events': futureEvents} });
-
-      return Meteor.user();
+      return 'success';
    }
 });
 
@@ -44,8 +49,7 @@ const getFutureEvents = (events) => {
    let futureEvents = [];
 
    events.forEach((event) =>{
-
-      if(new Date(event.start_time) > new Date()){
+      if (new Date(event.start_time) > new Date()) {
          futureEvents.push(event);
       }
    });

@@ -1,0 +1,25 @@
+<template name="media">
+	<article class="media">
+		<figure class="media-left">
+			<p class="image is-128x128 centered-image">
+				<img src="{{item.coverImage}}">
+			</p>
+		</figure>
+		<div class="media-content">
+			<div class="content">
+				<p>
+					<strong>{{item.name}}</strong> <small>{{parseStartTime}}</small>
+					<br>
+					{{item.description}}
+				</p>
+			</div>
+			<nav class="level">
+			</nav>
+		</div>
+		<div class="media-right">
+			<label class="checkbox">
+				<input type="checkbox" checked="{{this.selected}}">
+			</label>
+		</div>
+	</article>
+</template>

@@ -20,29 +20,33 @@ Template.dashboard.helpers({
 });
 
 Template.pageEvents.helpers({
+  hasEvents() {
+    return Events.find({ owner: Meteor.userId() }).count();
+  },
+
   getEvents() {
-    return Meteor.user().profile.events;
+    return Events.find({ owner: Meteor.userId() });
   },
 
   getProgress() {
-		// Mockando progresso
-		clearTimeout(timer);
+    // Mockando progresso
+    clearTimeout(timer);
 
-		timer = setTimeout(() => {
-			let progress = Session.get('progress');
+    timer = setTimeout(() => {
+      let progress = Session.get('progress');
 
-			if (progress > 100) {
-				clearTimeout(timer);
-				return;
-			}
+      if (progress > 100) {
+        clearTimeout(timer);
+        return;
+      }
 
-			Session.set('progress', progress + 2)
-		}, 100);
+      Session.set('progress', progress + 2)
+    }, 100);
 
-		if (Session.get('progress') === 0 && ! started) {
-			started = true;
+    if (Session.get('progress') === 0 && ! started) {
+      started = true;
 
-			Meteor.call('getEventsFromApi', Meteor.user(), (err, data) => {
+      Meteor.call('getEventsFromApi', (err, data) => {
 				Session.set('progress', 100);
 			});			
 		}
