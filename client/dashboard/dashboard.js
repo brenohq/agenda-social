@@ -1,5 +1,5 @@
 let timer = 0;
-let time = 0;
+let started = false;
 Session.setDefault('progress', 0);
 
 Template.dashboard.helpers({
@@ -25,26 +25,30 @@ Template.pageEvents.helpers({
   },
 
   getProgress() {
-    // Mockando progresso
-    clearTimeout(timer);
-    timer = setTimeout(() => {
-      let progress = Session.get('progress');
-      if (progress > 100) {
-        clearTimeout(timer);
-        $('.progress').remove();
-        Meteor.call('getEventsFromApi', Meteor.user(), function() {
+		// Mockando progresso
+		clearTimeout(timer);
 
-        });
+		timer = setTimeout(() => {
+			let progress = Session.get('progress');
 
-        return;
-      }
+			if (progress > 100) {
+				clearTimeout(timer);
+				return;
+			}
 
-      Session.set('progress', progress + 2)
-    }, 100);
+			Session.set('progress', progress + 2)
+		}, 100);
 
-    return Session.get('progress');
+		if (Session.get('progress') === 0 && ! started) {
+			started = true;
 
-  }
+			Meteor.call('getEventsFromApi', Meteor.user(), (data) => {
+				Session.set('progress', 100);
+			});			
+		}
+
+		return Session.get('progress');
+	}
 });
 
 Template.dashboard.events({
