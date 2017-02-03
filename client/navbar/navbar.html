@@ -6,31 +6,21 @@
         <a class="nav-item">
           <!--<img src="http://bulma.io/images/bulma-logo.png" alt="Bulma logo">-->
         </a>
-      </div>
-
-      <div class="nav-center">
-        <!-- Conteúdo centralizado da navbar  -->
-      </div>
-
-      
-
-      <!-- This "nav-menu" is hidden on mobile -->
-      <!-- Add the modifier "is-active" to display it on mobile -->
+      </div>   
       <div class="nav-right nav-menu" id="nav-menu">
-        <a class="nav-item is-tab" href="">
-          Cadastre sua ONG
-        </a>
-        <a class="nav-item is-tab" href="">
-          Cadastre seu Evento
-        </a>
-        <a class="nav-item is-tab" href="">
+        <a class="nav-item is-tab  {{isActive '/about'}}" href="">
           Sobre
         </a>
+        {{#if currentUser}}
+           <a class="nav-item is-tab {{isActive '/dashboard'}}" href="/dashboard">
+            Dashboard
+          </a>
+          <a class="nav-item logout" href="">
+            Logout
+          </a>
+        {{/if}}
       </div>
 
-
-      <!-- This "nav-toggle" hamburger menu is only visible on mobile -->
-      <!-- You need JavaScript to toggle the "is-active" class on "nav-menu" -->
       <span class="nav-toggle" id="nav-toggle">
         <span></span>
         <span></span>

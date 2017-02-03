@@ -1,21 +1,23 @@
 <template name="dashboard">
+  <section class="hero padding-top">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title">
+          Hero title
+        </h1>
+        <h2 class="subtitle">
+          Hero subtitle
+        </h2>
+      </div>
+    </div>
+  </section>
 	<section class="section padding-top">
     <div class="container">
-      <div class="columns">
-        <div class="collumn">
-          <div class="heading">
-            <h1 class="title">Section</h1>
-            <h2 class="subtitle">
-              A simple container to divide your page into <strong>sections</strong>, like the one you're currently reading
-            </h2>
-          </div>          
-        </div>
-      </div>
       {{#if userPages}}
         <ul class="columns">
           {{#each userPages}}
             <li class="column is-one-third">
-              <div class="card ">
+              <div class="card">
                 <div class="card-image">
                   <figure class="image is-16by9">
                     <img src="{{this.coverImage}}" alt="Image">
