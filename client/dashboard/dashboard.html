@@ -1,41 +1,45 @@
 <template name="dashboard">
-
-<section class="hero is-fullheight">
-  <div class="hero-body">
-    <div class="container">
-      {{#if userPages}}
-        <ul class="columns">
-          {{#each userPages}}
-            <li class="column is-one-third">
-              <div class="card">
-                <div class="card-image">
-                  <figure class="image">
-                    <img src="{{this.coverImage}}" alt="Image">
-                  </figure>
-                </div>
-                <div class="card-content">
-                  <div class="media">
-                    <div class="media-left">
-                      <figure class="image" style="height: 40px; width: 40px;">
-                        <img src="{{this.image}}" alt="Image">
-                      </figure>
+  <section class="hero padding-top">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title">
+          Passo 1
+        </h1>
+        <h2 class="subtitle">
+          Selecione a sua ong:
+        </h2>
+        {{#if userPages}}
+          <ul class="columns">
+            {{#each userPages}}
+              <li class="column is-one-third">
+                <div class="card">
+                  <div class="card-image">
+                    <figure class="image">
+                      <img src="{{this.coverImage}}" alt="Image">
+                    </figure>
+                  </div>
+                  <div class="card-content">
+                    <div class="media">
+                      <div class="media-left">
+                        <figure class="image" style="height: 40px; width: 40px;">
+                          <img src="{{this.image}}" alt="Image">
+                        </figure>
+                      </div>
+                      <div class="media-content">
+                        <p class="title is-4">{{this.name}}</p>
+                      </div>
                     </div>
-                    <div class="media-content">
-                      <p class="title is-4">{{this.name}}</p>
+
+                    <div class="content">
+                      {{this.description}}
                     </div>
                   </div>
-
-                  <div class="content">
-                    {{this.description}}
-                  </div>
                 </div>
-              </div>
-            </li>
-          {{/each}}
-        </ul>
-      {{/if}}
+              </li>
+            {{/each}}
+          </ul>
+        {{/if}}
+      </div>
     </div>
-  </div>
-</section>
-
+  </section>
 </template>

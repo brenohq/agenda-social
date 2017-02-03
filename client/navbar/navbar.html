@@ -8,22 +8,20 @@
         </a>
       </div>   
       <div class="nav-right nav-menu" id="nav-menu">
-        <a class="nav-item is-tab  {{isActive '/about'}}" href="">
-          Sobre
-        </a>
         {{#if currentUser}}
            <a class="nav-item is-tab {{isActive '/dashboard'}}" href="/dashboard">
             Dashboard
           </a>
-          <span class="nav-item">
-            <a class="nav-item logout button is-primary" href="">
-              Logout
-            </a>
-          </span>
-          
+        {{/if}}
+        <a class="nav-item is-tab  {{isActive '/about'}}" href="">
+          Sobre
+        </a>
+        {{#if currentUser}}
+          <a class="nav-item logout button is-primary" href="">
+            Logout
+          </a>
         {{/if}}
       </div>
-
       <span class="nav-toggle" id="nav-toggle">
         <span></span>
         <span></span>

@@ -10,6 +10,7 @@
 	right: 0;
 	left: 0;
 	background-image: url(images/bg-header.jpg);
+	background-size: cover;
 	background-attachment: fixed;
 	opacity: .65;
 }

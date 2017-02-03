@@ -5,8 +5,16 @@ Router.route('/', {
 });
 
 Router.route('/dashboard', {
+	onBeforeAction() {
+		if (!Meteor.userId())
+			Router.go('/');
+
+		this.next();
+	},
+
 	action() {
-		this.render('dashboard');		
+		if (this.ready())
+			this.render('dashboard');
 	}
 });
 
