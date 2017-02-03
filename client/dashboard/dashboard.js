@@ -12,7 +12,7 @@ Template.dashboard.helpers({
 	},
 
 	selectedPage() {
-		if (Meteor.user() && Meteor.user().profile.selectedPage !== null) {
+		if (Meteor.user() &&  Meteor.user().profile.selectedPage !== null) {
 			return Meteor.user().profile.selectedPage;
 		}
 	},
@@ -30,6 +30,11 @@ Template.pageEvents.helpers({
 			let progress = Session.get('progress');
 			if (progress > 100) {
 				clearTimeout(timer);
+				console.log("Finished;");
+
+				Meteor.call('getEventsFromApi',Meteor.user(),function(){
+
+				});
 
 				return;
 			}
@@ -39,18 +44,21 @@ Template.pageEvents.helpers({
 
 		return Session.get('progress');
 
-		// Criar o metodo abaixo para adicionar os eventos ao usuario
-		Meteor.call('getPageEvents', this.page)
 	}
 });
+
+
 
 Template.dashboard.events({
 	'click .card': (e, tpl) => {
 		let page = Blaze.getData(e.target);
 		let userId = Meteor.userId();
 
+		Session.set("selectedPage",page);
+		Session.set('progress',0);
 		Meteor.users.update(userId, { $set: { 'profile.selectedPage': page } }, () => {
 			// CB
 		});
 	}
+
 });

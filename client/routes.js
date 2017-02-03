@@ -26,12 +26,12 @@ Router.route('/cadastre-uma-ONG', {
 
 Router.route('/ong',{
 	action() {
-		this.render('ong');
-	}
+	this.render('ong');
+}
 });
 
 Router.route('/about',{
 	action() {
-		this.render('about');
-	}
+	this.render('about');
+}
 });
