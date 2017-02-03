@@ -2,14 +2,16 @@
   <section class="hero padding-top">
     <div class="hero-body">
       <div class="container">
+
         {{#unless selectedPage}}
           <h1 class="title">
-            Opa! Você está quase la,
+            Opa! Aqui estão suas páginas,
           </h1>
           <h2 class="subtitle">
-            para continuar selecione a página da sua ONG:
+            para começar, escolha uma!
           </h2>
         {{/unless}}
+
         {{#if userPages}}
           {{#if selectedPage}}
             {{> pageEvents page=selectedPage}}
@@ -17,6 +19,7 @@
             {{> pageList pages=userPages}}
           {{/if}}
         {{/if}}
+        
       </div>
     </div>
   </section>

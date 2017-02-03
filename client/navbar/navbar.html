@@ -3,8 +3,8 @@
   <nav class="nav nav--fixed has-shadow">
     <div class="container">
       <div class="nav-left">
-        <a class="nav-item">
-          <h2>Colabot</h2>
+        <a class="nav-item" href="/">
+          <span>Colabot</span>
           <!--<img src="http://bulma.io/images/bulma-logo.png" alt="Bulma logo">-->
         </a>
       </div>   
@@ -14,7 +14,7 @@
             Dashboard
           </a>
         {{/if}}
-        <a class="nav-item is-tab  {{isActive '/about'}}" href="">
+        <a class="nav-item is-tab  {{isActive '/about'}}" href="/about">
           Sobre
         </a>
         {{#if currentUser}}

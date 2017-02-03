@@ -29,3 +29,9 @@ Router.route('/ong',{
 		this.render('ong');
 	}
 });
+
+Router.route('/about',{
+	action() {
+		this.render('about');
+	}
+});

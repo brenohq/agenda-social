@@ -1,8 +1,8 @@
-.hero--bg {
+#hero--bg {
 	position: relative;	
 }
 
-.hero--bg:before {
+#hero--bg:before {
 	content: '';
 	position: absolute;
 	top: 0;
