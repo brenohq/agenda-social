@@ -1,12 +1,13 @@
 Template.login.events({
-	'click #facebook-login': () => {
-		Meteor.loginWithFacebook({
-			requestPermissions: ['manage_pages'],
-			requestOfflineToken: true
-		});
-	},
+  'click #facebook-login': () => {
+    $('#facebook-login').toggleClass('is-loading');
+    Meteor.loginWithFacebook({
+      requestPermissions: ['manage_pages'],
+      requestOfflineToken: true
+    });
+  },
 
-	'click #logout': () => {
-		Meteor.logout();
-	}
+  'click #logout': () => {
+    Meteor.logout();
+  }
 });
