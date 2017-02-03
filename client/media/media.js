@@ -9,6 +9,9 @@ Template.media.helpers({
 Template.media.events({
 	'click .checkbox': (e) => {
 		let event = Blaze.getData(e.target).item;
+
+		console.log(event)
+		
 		Events.update(event._id, { $set: { selected: !event.selected }})
 	}
 });

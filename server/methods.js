@@ -15,8 +15,8 @@ Meteor.methods({
       let futureEvents = [];
 
 
-      // if (typeof eventsResult.data.events === 'undefined')
-      //    return;
+      if (typeof eventsResult.data.events === 'undefined')
+         return false;
 
       if (eventsResult.data.events.data) {
          futureEvents = getFutureEvents(eventsResult.data.events.data);
@@ -40,7 +40,7 @@ Meteor.methods({
          }
       });
 
-      return 'success';
+      return true;
    }
 });
 

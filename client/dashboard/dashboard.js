@@ -47,7 +47,17 @@ Template.pageEvents.helpers({
       started = true;
 
       Meteor.call('getEventsFromApi', (err, data) => {
-				Session.set('progress', 100);
+        Session.set('progress', 100);
+
+        if (!data) {
+          Session.set('error', 'Desculpe, não foi possivel encontrar enventos próximos :(');
+
+          setTimeout(() => {
+            Meteor.logout(() => {
+              Router.go('/');            
+            });
+          }, 3500);
+        }
 			});			
 		}
 
