@@ -49,6 +49,7 @@ Template.pageEvents.helpers({
       Meteor.call('getEventsFromApi', (err, data) => {
         Session.set('progress', 100);
 
+        console.log(data)
         if (!data) {
           Session.set('error', 'Desculpe, não foi possivel encontrar enventos próximos :(');
 

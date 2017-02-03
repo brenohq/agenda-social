@@ -22,6 +22,9 @@ Meteor.methods({
          futureEvents = getFutureEvents(eventsResult.data.events.data);
       }
 
+      if (!futureEvents.length)
+         return false;
+
       futureEvents.forEach((event) => {
          pageUrl = 'https://graph.facebook.com/v2.8/'+ event.id +'?access_token='+ accessToken;
          pageUrl += '?&fields=cover';
@@ -33,7 +36,6 @@ Meteor.methods({
          }
 
          if (!Events.find({ id: event.id }).count()) {
-            console.log('oe')
             event.owner = userId;
             event.selected = false;
             Events.insert(event);
