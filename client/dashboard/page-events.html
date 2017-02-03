@@ -1,6 +1,42 @@
 <template name="pageEvents">
+	
+
+	<nav class="panel">
+  <p class="panel-heading">
+		Seus Eventos
+  </p>
+  <div class="panel-block">
+    <p class="control has-icon">
+      <input class="input is-small" type="text" placeholder="Search">
+      <span class="icon is-small">
+        <i class="fa fa-search"></i>
+      </span>
+    </p>
+  </div>
+
 	{{#if getEvents}}
+
+		{{#each getEvents}}
+
+			<a class="panel-block is-active">
+				<span class="panel-icon">
+					<i class="fa fa-book"></i>
+				</span>
+				{{ this.name }}
+				<label class="panel-block is-pulled-right">
+				<input type="checkbox">
+				Remember me
+			</label>
+
+		</a>
+
+		{{/each }}
+
 	{{else}}
 		<progress class="progress is-primary" value="{{getProgress}}" max="100">{{getProgress}}%</progress>
 	{{/if}}
+  
+</nav>
+
+	
 </template>
