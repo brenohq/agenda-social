@@ -3,6 +3,10 @@
  */
 
 Meteor.methods({
+   'test': () => {
+      console.log(getLatLngFromAddress)
+   },
+
    'removeSelectedFromUser': () => {
       let userId = Meteor.userId();
 
@@ -10,11 +14,12 @@ Meteor.methods({
 
    },
 
-   'getEventsFromApi': () => {
+   'getEventsFromApi': (pageId, token) => {
       let user = Meteor.user();
-      let accessToken = user.services.facebook.accessToken;
-      let page_id =user.profile.selectedPage.id;
+      let accessToken = token ? token : user.services.facebook.accessToken;
+      let page_id = pageId ? pageId : user.profile.selectedPage.id;
       let userId = Meteor.userId();
+      let location = {};
 
       let pageUrl = 'https://graph.facebook.com/v2.8/'+ page_id +'?access_token='+ accessToken;
       pageUrl += '?&fields=events';
@@ -42,6 +47,18 @@ Meteor.methods({
             event.coverImage = eventsResult.data.cover.source;
          }
 
+         if (typeof event.place.location !== 'undefined') {
+            let curLocation = event.place.location;
+            location = { lat: curLocation.latitude, lng: curLocation.longitude };    
+         }
+
+         location = getLatLngFromAddress(event.place.name || event.place.city, event.place.city);
+
+         event.location = location;
+
+         if (typeof event.place !== 'undefined')
+            delete event.place
+
          if (!Events.find({ id: event.id }).count()) {
             event.owner = userId;
             event.selected = false;
@@ -50,35 +67,6 @@ Meteor.methods({
       });
 
       return true;
-   },
-
-   'closestEvents': (location) => {
-      const request = Meteor.http.get;
-
-      let begin = {
-         lat: -23.5246611,
-         lon: -46.7313022
-      }
-
-      let end = {
-         lat: -20.3886024,
-         lon: -44.4938625
-      }
-
-      let origin = begin.lat + ',' + begin.lon;
-      let destination = end.lat + ',' + end.lon;
-
-      let url = "https://maps.googleapis.com/maps/api/distancematrix/json?units=metric&origins=" + origin + "&destinations=" + destination + "&key=AIzaSyAMHSYI2hMp1JUGPES1dvEn9-cW5UZEcNE";
-
-      request(url, function(error, response, body) {
-         if (!error && response.statusCode == 200) {
-            console.log(body); // body contém distância, duração do trajeto e outras informações úteis
-         } else {
-            console.log('Erro: ', error);
-            console.log('Status Code: ', response.statusCode);
-         }
-      })
-
    }
 });
 
@@ -95,11 +83,22 @@ const getFutureEvents = (events) => {
    return futureEvents;
 }
 
-function calculateDistanceSimple(start, end) {
+function getLatLngFromAddress(address, secondResource) {
+   let url = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + encodeURI(address);
+   url += '&key=AIzaSyC1c1A-_0JNhx1TEcA3PEBmB0u92f10K9Y';
+   let location = Meteor.http.get(url);
+   let geometry = {};
 
-    var sin = Math.sin(toRad(end.lat)) * Math.sin(toRad(start.lat));
-    var cos = Math.cos(toRad(end.lat)) * Math.cos(toRad(start.lat))*Math.cos(toRad(start.lng) - toRad(end.lng));
-    var distance =  Math.acos(Math.min(1.0, sin+cos)) * RADIUS;
+   if (typeof location.data.results[0] !== 'undefined') {
+      geometry = location.data.results[0].geometry;
+   } else {
+      geometry = location.data.results.geometry;
+   }
 
-    return Math.round(distance);
+   if (typeof geometry === 'undefined' && secondResource) {
+      return getLatLngFromAddress(secondResource, false);
+
+   } else {
+      return geometry.location;
+   }
 }
