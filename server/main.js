@@ -1,5 +1,5 @@
 import { Meteor } from 'meteor/meteor';
-const token = 'EAACEdEose0cBAPQtQcbJsLLMApXLdfQUMTj08M6I4qQIsiV9rGBw5eU4oDBCZBv9533arHE5uA1BhwwCpFfspEint67KjIlvGTK64yZBBZB7ZB4zIhK8xwZAKtBGR5CDFa062o4qSuGS8Ndhl64afcJE7YVv7EUjCqayli053ZBVqSidznF5qq0LH89fIf8XYZD';
+const token = 'EAACEdEose0cBACINq36elPj3BeJkLd0o8ZASfglr6ymp9LqET5ZCRY2fN5EMAfY7rrGM3qHwnAiyFZA9CPsGCZBNS8JBpalsLokFRDlHPnZALkjpqpGeIaqMPFMl7ilh5MLW8BRCFIcIdPORPxn2OYtqHul2dXvLrDo4W79nYt2nbmtQpboadGflHlLunj48ZD';
 
 Meteor.startup(() => {
 	// Mudar token antes de tirar o return

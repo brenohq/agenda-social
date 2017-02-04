@@ -49,8 +49,8 @@
 }
 
 .nav .nav-image img {
-    max-height: 100%;
-    height: 100%;
-    /*margin: 10% 0;*/
+    max-height: 80%;
+    height: 80%;
+    margin: 10% 0;
     width: auto;
 }

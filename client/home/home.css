@@ -9,8 +9,9 @@
 	bottom: 0;
 	right: 0;
 	left: 0;
-	background-image: url(images/bg-header.jpg);
+	/*background-image: url(images/bg-header.jpg);*/
+	background-image: url(images/bg-header-2.jpg);
 	background-size: cover;
 	background-attachment: fixed;
-	opacity: .65;
+	opacity: .55;
 }
